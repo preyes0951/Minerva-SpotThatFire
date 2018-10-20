@@ -1,0 +1,4 @@
+{
+  "reddit":{ "client-id": "", "client-secret":"" },
+  "google":{ "key": "" }
+}
