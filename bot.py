@@ -4,7 +4,7 @@ import urllib.request
 client_id = 'KOaqBIKzJYhhsg'
 client_secret = "sDRORt1IXXygdTmajuyGVOcm1B0"
 
-def main():
+def run():
 	reddit = praw.Reddit(client_id=client_id,
 						 client_secret=client_secret,
 						 user_agent="Fuego Fire Tracker v 1.0 https://github.com/preyes0951/Minerva-SpotThatFire")
@@ -15,8 +15,7 @@ def main():
 		with open('image.jpg', 'wb') as f:
 			f.write(image)
 
-
-
-
+def main():
+	run()
 
 main()
