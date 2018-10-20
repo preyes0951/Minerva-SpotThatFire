@@ -18,8 +18,11 @@ def is_same_day(day_one: datetime, day_two: datetime):
 	return False
 
 
-def is_image(url_request):
-	return url_request.info().get_content_type().find('image') != -1
+# The PRAW submission API contains a boolean value called is_self which is true if
+# the submission is a pure text post.
+# This method returns true if post is not a pure text post.
+def is_image_post(submission):
+	return not submission.is_self
 
 
 def get_image(url):
@@ -42,7 +45,7 @@ def run(subreddit_name='minervaTest'):
 		# https://stackoverflow.com/questions/3042757/downloading-a-picture-via-urllib-and-python
 		submission_date = datetime.fromtimestamp(submission.created_utc)
 		# https://stackoverflow.com/questions/12474406/python-how-to-get-the-content-type-of-an-url
-		if is_same_day(today, submission_date) and not submission.is_self:
+		if is_same_day(today, submission_date) and is_image_post(submission):
 			image = get_image(submission.url)
 			if image is not None:
 				images.append(image)
