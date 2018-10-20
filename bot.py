@@ -1,15 +1,20 @@
 import praw
 import urllib.request
+import json
 from datetime import datetime
 
-client_id = 'KOaqBIKzJYhhsg'
-client_secret = "sDRORt1IXXygdTmajuyGVOcm1B0"
 
-
+# Get reddit keys from keys.json and start new reddit onnection
 def create_reddit_connection(subreddit_name='minervaTest'):
+	with open("keys.json") as f:
+		key_table = json.load(f)
+		reddit_data = key_table['reddit']
+		client_id = reddit_data['client-id']
+		client_secret = reddit_data['client-secret']
+
 	return praw.Reddit(client_id=client_id,
-						 client_secret=client_secret,
-						 user_agent="Fuego Fire Tracker v 1.0 https://github.com/preyes0951/Minerva-SpotThatFire")
+							client_secret=client_secret,
+						 	user_agent="Fuego Fire Tracker v 1.0 https://github.com/preyes0951/Minerva-SpotThatFire")
 
 
 def is_same_day(day_one: datetime, day_two: datetime):
@@ -32,6 +37,7 @@ def get_image(url):
 		return image_data.read()
 	except urllib.error.HTTPError:
 		return None
+
 
 # Run minerva bot to get today's posts on the minerva subreddit
 # Returns a list of images
