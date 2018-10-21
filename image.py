@@ -1,3 +1,4 @@
+# Not currently in use. Would be used if EXIF metadata was available for images we downloaded
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 
