@@ -11,7 +11,6 @@ exif = {
     if k in PIL.ExifTags.TAGS
 }
 
-print exif
 
 
 class Worker(object):
@@ -107,4 +106,3 @@ class Worker(object):
 
 def main():
     date = image1.date
-    print(date)
