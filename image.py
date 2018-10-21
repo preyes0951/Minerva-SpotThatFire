@@ -4,6 +4,8 @@ from PIL.ExifTags import TAGS, GPSTAGS
 metaData = {}
 image1 = Image.open('workingdata.jpg')
 
+# https://stackoverflow.com/questions/4764932/in-python-how-do-i-read-the-exif-data-for-an-image
+# 10/20/2018
 
 class Worker(object):
     def __init__(self, img):
@@ -103,4 +105,3 @@ def main():
     print (exif.get_date_time())
 
 main()
-
