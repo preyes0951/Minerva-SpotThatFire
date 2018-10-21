@@ -4,14 +4,6 @@ from PIL.ExifTags import TAGS, GPSTAGS
 metaData = {}
 image1 = Image.open('workingdata.jpg')
 
-import PIL.ExifTags
-exif = {
-    PIL.ExifTags.TAGS[k]: v
-    for k, v in image1._getexif().items()
-    if k in PIL.ExifTags.TAGS
-}
-
-
 
 class Worker(object):
     def __init__(self, img):
@@ -105,4 +97,10 @@ class Worker(object):
             return date_and_time
 
 def main():
-    date = image1.date
+    exif = Worker(image1)
+    print (exif.get_lat())
+    print (exif.get_lon())
+    print (exif.get_date_time())
+
+main()
+
