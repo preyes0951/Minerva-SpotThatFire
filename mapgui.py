@@ -14,9 +14,9 @@ coords =   [(37.769901, -122.498331),
 def GetMapHTML(coords):
     # Place map
     #San Frrancisco
-    gmap = gmplot.GoogleMapPlotter(37.766956, -122.438481, 13,'AIzaSyCW8wSRBcgSexbzbEkJb-XyUvQnFEjY11s')
+    # gmap = gmplot.GoogleMapPlotter(37.766956, -122.438481, 13,'AIzaSyCW8wSRBcgSexbzbEkJb-XyUvQnFEjY11s')
     #Huntsville
-    #gmap = gmplot.GoogleMapPlotter(34.711146877417235,-86.65393352508545, 13,'AIzaSyCW8wSRBcgSexbzbEkJb-XyUvQnFEjY11s')
+    gmap = gmplot.GoogleMapPlotter(34.711146877417235,-86.65393352508545, 13,'AIzaSyCW8wSRBcgSexbzbEkJb-XyUvQnFEjY11s')
 
     # Scatter points
     top_attraction_lats, top_attraction_lons = zip(*coords)
@@ -46,6 +46,7 @@ class Example(QWidget):
         self.setWindowTitle('Burn Notice')
 
         self.show()
+
 
 
 if __name__ == '__main__':
