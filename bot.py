@@ -29,17 +29,20 @@ def is_image_post(submission):
 	return not submission.is_self
 
 
-def get_image(url):
+# Returns image if url was read successfully or None if image wasn't successful
+def get_image(url: str):
 	try:
-		# https://stackoverflow.com/questions/3042757/downloading-a-picture-via-urllib-and-python
-		image_data = urllib.request.urlopen(url)
-		return image_data.read()
+		with urllib.request.urlopen(url) as urlstream:
+			image = urlstream.read()
 	except urllib.error.HTTPError:
-		return None
+		image = None
+	except urllib.error.URLError:
+		image = None
+	return image
 
 
 # Run minerva bot to get today's posts on the desired subreddit
-# Returns a list of images
+# Returns a list of tuples organized like: (title, image)
 def run(subreddit_name='minervaTest'):
 	reddit = create_reddit_connection(subreddit_name)
 	sub = reddit.subreddit(subreddit_name)
@@ -49,9 +52,10 @@ def run(subreddit_name='minervaTest'):
 	for submission in sub.new():
 		submission_date = datetime.fromtimestamp(submission.created_utc)
 		if is_same_day(today, submission_date) and is_image_post(submission):
+			title = submission.title
 			image = get_image(submission.url)
 			if image is not None:
-				images.append(image)
+				images.append((title, image))
 
 	return images
 
@@ -60,10 +64,10 @@ def run(subreddit_name='minervaTest'):
 def main():
 	todays_images = run()
 	image_counter = 0
-	for image in todays_images:
+	for title, image in todays_images:
 		with open('file' + str(image_counter) + '.jpg', 'wb') as f:
 			f.write(image)
-		image_counter += 1
+			image_counter += 1
 
 
 if __name__ == "__main__":
