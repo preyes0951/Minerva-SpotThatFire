@@ -30,6 +30,9 @@ def is_image_post(submission):
 
 
 # Returns image if url was read successfully or None if image wasn't successful
+# If implementing this project for real then one would need to validate that only
+# image urls are passed into the get_image function. Otherwise the function
+# throws the ugly URLError exception.
 def get_image(url: str):
 	try:
 		with urllib.request.urlopen(url) as urlstream:
@@ -40,6 +43,9 @@ def get_image(url: str):
 		image = None
 	return image
 
+
+def filter_invalid_images(images):
+	return [(title, image) for title, image in images if image is not None]
 
 # Run minerva bot to get today's posts on the desired subreddit
 # Returns a list of tuples organized like: (title, image)
@@ -54,10 +60,8 @@ def run(subreddit_name='minervaTest'):
 		if is_same_day(today, submission_date) and is_image_post(submission):
 			title = submission.title
 			image = get_image(submission.url)
-			if image is not None:
-				images.append((title, image))
-
-	return images
+			images.append((title, image))
+	return filter_invalid_images(images)
 
 
 # Test minerva bot
