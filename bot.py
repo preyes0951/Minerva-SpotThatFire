@@ -31,15 +31,15 @@ def is_image_post(submission):
 
 
 def get_image(url):
-	# https://stackoverflow.com/questions/12474406/python-how-to-get-the-content-type-of-an-url
 	try:
+		# https://stackoverflow.com/questions/3042757/downloading-a-picture-via-urllib-and-python
 		image_data = urllib.request.urlopen(url)
 		return image_data.read()
 	except urllib.error.HTTPError:
 		return None
 
 
-# Run minerva bot to get today's posts on the minerva subreddit
+# Run minerva bot to get today's posts on the desired subreddit
 # Returns a list of images
 def run(subreddit_name='minervaTest'):
 	reddit = create_reddit_connection(subreddit_name)
@@ -48,9 +48,7 @@ def run(subreddit_name='minervaTest'):
 
 	images = []
 	for submission in sub.new():
-		# https://stackoverflow.com/questions/3042757/downloading-a-picture-via-urllib-and-python
 		submission_date = datetime.fromtimestamp(submission.created_utc)
-		# https://stackoverflow.com/questions/12474406/python-how-to-get-the-content-type-of-an-url
 		if is_same_day(today, submission_date) and is_image_post(submission):
 			image = get_image(submission.url)
 			if image is not None:
