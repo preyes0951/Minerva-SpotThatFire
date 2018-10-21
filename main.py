@@ -1,8 +1,6 @@
 import bot
 from mapgui import *
 
-burn_coords = []
-
 
 # Runs a prototype instance of BurnNotice
 def main():
