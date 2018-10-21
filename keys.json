@@ -1,4 +1,4 @@
 {
-  "reddit":{ "client-id": "KOaqBIKzJYhhsg", "client-secret":"sDRORt1IXXygdTmajuyGVOcm1B0" },
-  "google":{ "key": "AIzaSyCW8wSRBcgSexbzbEkJb-XyUvQnFEjY11s" }
+  "reddit":{ "client-id": "", "client-secret":"" },
+  "google":{ "key": "" }
 }
