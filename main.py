@@ -3,6 +3,7 @@ from mapgui import *
 
 burn_coords = []
 
+
 # Runs a prototype instance of BurnNotice
 def main():
 	app = QApplication(sys.argv)
@@ -10,6 +11,7 @@ def main():
 	sys.exit(app.exec_())
 
 
+# Displays locations of posts on the minervaTest subreddit from the last 24 hours using Google Maps and PyQt5
 class BurnNoticeExampleWidget(QWidget):
 	def __init__(self):
 		super().__init__()
