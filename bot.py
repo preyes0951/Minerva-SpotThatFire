@@ -24,6 +24,7 @@ def extract_float_value(s:str):
 		return None
 
 
+# Gets list of latitude and longitude tuples formatted like (latitude, longitude)
 def extract_location_from_posts(posts):
 	locations = []
 	for title, _ in posts:
