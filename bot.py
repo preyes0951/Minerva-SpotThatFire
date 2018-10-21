@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 
-# Get reddit keys from keys.json and start new reddit onnection
+# Get reddit keys from keys.json and start new reddit connection
 def create_reddit_connection(subreddit_name='minervaTest'):
 	with open("keys.json") as f:
 		key_table = json.load(f)
@@ -17,10 +17,9 @@ def create_reddit_connection(subreddit_name='minervaTest'):
 						 	user_agent="Fuego Fire Tracker v 1.0 https://github.com/preyes0951/Minerva-SpotThatFire")
 
 
+# https://stackoverflow.com/questions/6407362/how-can-i-check-if-a-date-is-the-same-day-as-datetime-today
 def is_same_day(day_one: datetime, day_two: datetime):
-	if day_one.day == day_two.day and day_one.month == day_two.month and day_one.year == day_two.year:
-		return True
-	return False
+	return (day_one - day_two).days == 0
 
 
 # The PRAW submission API contains a boolean value called is_self which is true if
